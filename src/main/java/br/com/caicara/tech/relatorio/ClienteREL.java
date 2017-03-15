@@ -20,9 +20,12 @@ public class ClienteREL {
 	
 	//Recupera os caminhos para que a classe possa encontrar os relatórios
 	public ClienteREL() {
-		this.path = this.getClass().getClassLoader().getResource("").getPath();
-		this.pathToReportPackage = this.path + "br/com/caicara/tech/templates/";
-		System.out.println(path);
+		System.out.println("testando");
+		this.path = this.getClass().getResource("br/com/caicara/tech/templates/").getPath();
+		
+		System.out.println("testando 2");
+		this.pathToReportPackage = this.path;
+		System.out.println(path + " -- " + pathToReportPackage);
 	}
 	
 	
@@ -30,9 +33,9 @@ public class ClienteREL {
 	public void imprimir(Iterable<Person> people) {
 		JasperReport report = null;
 		try {
-			System.out.println(this.getPathToReportPackage() + "teste_proc.jrxml");
+			System.out.println(this.path + " -- " + this.pathToReportPackage);
 			report = JasperCompileManager.compileReport(this.getPathToReportPackage() + "teste_proc.jrxml");
-			System.out.println(report);
+			//System.out.println(report);
 		} catch (JRException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

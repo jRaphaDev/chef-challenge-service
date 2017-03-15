@@ -20,6 +20,7 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public Iterable<Person> listAllPerson() {
 		Iterable<Person> people = personRepository.findAll();
+	
 		ClienteREL relatorio = new ClienteREL();
 		relatorio.imprimir(people);
 		return people;
