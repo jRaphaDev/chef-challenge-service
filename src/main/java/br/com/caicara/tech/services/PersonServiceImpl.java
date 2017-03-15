@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.caicara.tech.model.Person;
+import br.com.caicara.tech.relatorio.ClienteREL;
 import br.com.caicara.tech.repositories.PersonRepository;
 
 @Service
@@ -18,7 +19,10 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public Iterable<Person> listAllPerson() {
-		return personRepository.findAll();
+		Iterable<Person> people = personRepository.findAll();
+		ClienteREL relatorio = new ClienteREL();
+		relatorio.imprimir(people);
+		return people;
 	}
 
 	@Override

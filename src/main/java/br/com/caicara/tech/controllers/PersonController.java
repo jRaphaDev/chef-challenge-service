@@ -31,12 +31,14 @@ public class PersonController {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response create(Person person) {
 		try {
 			personService.savePerson(person);
 			System.out.println("Saving person " );
 	        return Response.created(URI.create("/person/" + person.getId())).entity(person).type(MediaType.APPLICATION_JSON).build();
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
@@ -49,6 +51,7 @@ public class PersonController {
 			System.out.println("Returning people " );
 			return Response.ok().entity(list).build();
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
@@ -62,10 +65,11 @@ public class PersonController {
 			System.out.println("Returning people " );
 			return Response.ok().entity(person).build();
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
-	
+
 	@PUT
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -78,10 +82,11 @@ public class PersonController {
 			System.out.println("Saving person ");
 	        return Response.noContent().entity(person).type(MediaType.APPLICATION_JSON).build();
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
-	
+
 	@DELETE
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -95,6 +100,7 @@ public class PersonController {
 			System.out.println("Deleting person ");
 	        return Response.noContent().build();
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
